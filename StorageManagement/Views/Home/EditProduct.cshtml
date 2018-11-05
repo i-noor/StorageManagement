@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Редактировать позицию";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model StorageManagement.Models.Product
+<h2>Позиция № @Model.Id</h2>
+@using (Html.BeginForm("EditBook", "Home", FormMethod.Post))
+{
+<fieldset>
+    @Html.HiddenFor(m => m.Id)
+    <p>
+        @Html.LabelFor(m => m.Name, "Название позиции")
+        <br />
+        @Html.EditorFor(m => m.Name)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Unit, "Единица измерения")
+        <br />
+        @Html.EditorFor(m => m.Unit)
+
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Quantity, "Количество")
+        <br />
+        @Html.EditorFor(m => m.Quantity)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Price, "Цена")
+        <br />
+        @Html.EditorFor(m => m.Price)
+    </p>
+    <p><input type="submit" value="Отправить" /></p>
+</fieldset>
+}

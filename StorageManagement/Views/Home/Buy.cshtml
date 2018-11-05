@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Buy";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Добавление транзакции</title>
+</head>
+<body>
+    <div>
+        <h3>Форма добавления транзакции</h3>
+        <form method="post" action="">
+            <input type="hidden" value="@ViewBag.TransactionId" name="TransactionId" />
+            <table>
+                <tr>
+                    <td><p>Введите Id продукта </p></td>
+                    <td><input type="number" name="ProductId" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Введите количество:</p></td>
+                    <td>
+                        <input type="number" name="Quantity" />
+                    </td>
+                </tr>
+                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

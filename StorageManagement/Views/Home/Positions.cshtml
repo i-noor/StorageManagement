@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Управление складом - Позиции</title>
+</head>
+<body>
+    <div>
+        <h3>Позиции</h3>
+        <table>
+            <tr>
+                <td><p>Код товара</p></td>
+                <td><p>Наименование</p></td>
+                <td><p>Ед.изм.</p></td>
+                <td><p>Количество</p></td>
+                <td><p>Цена</p></td>
+                <td></td>
+            </tr>
+            @foreach (var b in ViewBag.Products)
+            {
+            <tr>
+                <td><p>@b.Id</p></td>
+                <td><p>@b.Name</p></td>
+                <td><p>@b.Unit</p></td>
+                <td><p>@b.Quantity</p></td>
+                <td><p>@b.Price</p></td>
+                <td><p><a href="/Home/EditProduct/@b.Id">Редактировать</a></p></td>
+            </tr>
+            }
+        </table>
+        @Html.Partial("EditProduct")
+    </div>
+</body>
+</html>
