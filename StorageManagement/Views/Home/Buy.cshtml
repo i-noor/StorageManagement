@@ -14,6 +14,10 @@
         <h3>Форма добавления транзакции</h3>
         <form method="post" action="">
             <input type="hidden" value="@ViewBag.TransactionId" name="TransactionId" />
+            <select id="op" name="operation">
+                <option>Продажа</option>
+                <option>Поступление</option>
+            </select>
             <table>
                 <tr>
                     <td><p>Введите Id продукта </p></td>

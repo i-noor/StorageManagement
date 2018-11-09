@@ -58,11 +58,11 @@ namespace StorageManagement
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "522578870916-42n9a5rkm8mccavungg2kotdcf4dverh.apps.googleusercontent.com",
+                ClientSecret = "ZclsLtO44jxLcnb6bhxVYQ0k"
+            });
         }
     }
 }

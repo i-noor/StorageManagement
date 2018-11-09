@@ -9,12 +9,15 @@ namespace StorageManagement.Models
     {
         // ID покупки
         public int Id { get; set; }
-        // ID продукта
-        public int ProductId { get; set; }
+        // операция
+        public string Operation { get; set; }
+        // ID продукта        
+        public int? ProductId { get; set; }
+        public Product Product { get; set; }
         // купленное количество
         public int Quantity { get; set; }
         // стоимость
-        public int Cost { get; set; }
+        public double Cost { get; set; }
         // дата покупки
         public DateTime Date { get; set; }
     }

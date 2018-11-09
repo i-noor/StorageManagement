@@ -1,0 +1,42 @@
+﻿<h1>Транзакции</h1>
+<div class="col-sm-8" style="height:500px;overflow:auto;">
+    @{
+        double income = 0;
+        double expense = 0;
+        double balance = 0;
+        double emergencyExpense = 0;
+        double totalExpense = 0;
+    }
+    @foreach (var b in Model)
+    {
+        if (b.Operation == "Продажа")
+        {
+            <p class="hidden">@(income = income + b.Cost)</p>
+            <p>Транзакция №@b.Id <strong>Продажа</strong> продукта @b.Product.Name; <strong>Количество:</strong>@b.Quantity; <strong>Цена:</strong> @b.Product.Price  <strong>Доход</strong> = <span style="color:green">@b.Cost</span></p>
+        }
+        else
+        {
+            <p class="hidden">@(expense = expense + b.Cost)</p>
+            <p>
+                Транзакция №@b.Id <strong>Поступление</strong> продукта @b.Product.Name; <strong>Количество:</strong>@b.Quantity <strong>Цена:</strong> @(b.Product.Price * 0.8)  <strong>Расход</strong> = <span style="color:crimson">@b.Cost</span>
+            </p>
+        }
+    }
+</div>
+
+<div class="col-sm-4">
+    <table class="table">
+        <tr>
+            <th>Доход</th>
+            <th>Расход</th>
+            <th>В т.ч. списание</th>
+            <th>Прибыль</th>
+        </tr>
+        <tr>
+            <td>@income</td>
+            <td>@(totalExpense = expense + emergencyExpense)</td>
+            <td>@emergencyExpense</td>
+            <td>@(balance = income - totalExpense)</td>
+        </tr>
+    </table>
+</div>

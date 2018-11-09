@@ -1,16 +1,16 @@
 ﻿<!DOCTYPE html>
-
-<html>
+@model IEnumerable<StorageManagement.Models.Transaction>
+<html >
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Управление складом</title>
 </head>
-<body>
+<body id="transactions">
     <div>
         <p><button onClick='location.href="/Home/Buy/"' type="button" class="btn btn-dark">Добавить транзакцию</button></p>
-        
-        <h1>Транзакции</h1>
-        <textarea id="log" rows="5" cols="800">@ViewBag.LogText</textarea>
+        <div >
+            @{Html.RenderPartial("Transactions");}
+        </div>
     </div>
 </body>
 </html>

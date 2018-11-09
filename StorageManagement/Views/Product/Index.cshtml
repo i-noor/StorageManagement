@@ -1,0 +1,19 @@
+﻿@model IEnumerable<StorageManagement.Models.Product>
+
+@{
+    ViewBag.Title = "Позиции";
+}
+
+<h2>Позиции</h2>
+
+<p>
+<p><button onClick='location.href="/Product/Create/"' type="button" class="btn btn-dark">Добавить позицию</button></p>
+</p>
+<div>
+    @using (Ajax.BeginForm("ProductSearch", new AjaxOptions { UpdateTargetId = "results" }))
+    {
+        <input type="text" name="name" />
+        <input type="submit" value="Поиск" />
+    }    
+</div>
+@{Html.RenderPartial("ProductSearch");}
