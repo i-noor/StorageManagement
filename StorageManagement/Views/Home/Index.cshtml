@@ -5,11 +5,25 @@
     <meta name="viewport" content="width=device-width" />
     <title>Управление складом</title>
 </head>
-<body id="transactions">
-    <div>
-        <p><button onClick='location.href="/Home/Buy/"' type="button" class="btn btn-dark">Добавить транзакцию</button></p>
-        <div >
-            @{Html.RenderPartial("Transactions");}
+<body>
+    <p><button id="tradeButton" type="button" class="btn btn-dark">Начать торговлю</button></p>
+    <p><button onClick='location.href="/Home/Buy/"' type="button" class="btn btn-dark">Добавить транзакцию</button></p>
+    <div id="transactions">
+        @{Html.RenderPartial("Transactions");}
+    </div>
+    <div id="sp" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Внимание</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Обнаружены просроченные продукты.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="spButton" class="btn btn-primary">Списать</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>
