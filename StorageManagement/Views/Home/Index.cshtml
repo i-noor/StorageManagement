@@ -6,6 +6,7 @@
     <title>Управление складом</title>
 </head>
 <body>
+    <p id="status">@ViewBag.Status</p>
     <p><button id="tradeButton" type="button" class="btn btn-dark">Начать торговлю</button></p>
     <p><button onClick='location.href="/Home/Buy/"' type="button" class="btn btn-dark">Добавить транзакцию</button></p>
     <div id="transactions">
@@ -15,10 +16,10 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Внимание</h5>
+                    <h5 class="modal-title">Обнаружены просроченные продукты.</h5>
                 </div>
                 <div class="modal-body">
-                    <p>Обнаружены просроченные продукты.</p>
+                    <p>@ViewBag.Msg</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="spButton" class="btn btn-primary">Списать</button>

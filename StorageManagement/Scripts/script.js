@@ -34,42 +34,43 @@
             success: function (data) {
                 $("#transactions").html(data);
                 trade = true;
+                $("#status").text() == "Online";
                 console.log(data);
             }
         });
     });
-    function makeTransaction() {
-        if (trade) {
-            q = Math.round(getRandomArbitary(1, 10));
-            var rand = getRandomArbitary(0, 1);
-            if (rand < 0.8) {
-                op = "Продажа";
-            }
-            else if (rand < 0.9) {
-                op = "Поступление";
-                q = Math.round(getRandomArbitary(40, 50));
-            } else if (rand < 0.95){
-                trade = false;
-                op = "Списание";
-                q = Math.round(getRandomArbitary(10, 30));
-                $(".modal-body").text("Обнаружены просроченные продукты.");
-                $('#sp').modal('show');                
-                return 0;
-            } else {
-                trade = false;
-                op = "Списание";
-                q = Math.round(getRandomArbitary(10, 30));
-                $(".modal-body").text("Пропажа продуктов");
-                $('#sp').modal('show');
-                return 0;
-            }
+    function makeTransaction() {        
+        if ($("#status").text() == "Online") {
+        //    q = Math.round(getRandomArbitary(1, 10));
+        //    var rand = getRandomArbitary(0, 1);
+        //    if (rand < 0.8) {
+        //        op = "Продажа";
+        //    }
+        //    else if (rand < 0.9) {
+        //        op = "Поступление";
+        //        q = Math.round(getRandomArbitary(40, 50));
+        //    } else if (rand < 0.95){
+        //        trade = false;
+        //        op = "Списание";
+        //        q = Math.round(getRandomArbitary(10, 30));
+        //        //$(".modal-body").text("Обнаружены просроченные продукты.");
+        //        $('#sp').modal('show');                
+        //        return 0;
+        //    } else {
+        //        trade = false;
+        //        op = "Списание";
+        //        q = Math.round(getRandomArbitary(10, 30));
+        //        //$(".modal-body").text("Пропажа продуктов");
+        //        $('#sp').modal('show');
+        //        return 0;
+        //    }
             $.ajax({
                 type: 'POST',
                 url: '/Home/Transactions',
                 data: {
-                    a: 1,
-                    Operation: op,
-                    Quantity: q
+                    //a: 1,
+                    //Operation: op,
+                    //Quantity: q
                 },
                 success: function (data) {
                     $("#transactions").html(data);

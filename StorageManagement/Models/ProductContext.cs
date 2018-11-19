@@ -9,5 +9,6 @@ namespace StorageManagement.Models
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
     }
 }

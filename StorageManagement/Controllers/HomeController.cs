@@ -17,12 +17,20 @@ namespace StorageManagement.Controllers
         ProductContext db = new ProductContext();
         public int productsCount = 1;
         public string ajaxCheck;
+        public double quantity = 0;
+        public double storageExpense;
         public ActionResult Index()
         {  
             var transactions = db.Transactions.Include(p => p.Product);
             IEnumerable<Product> products = db.Products;
+            IEnumerable<Expense> expenses = db.Expenses;
+            ViewBag.Expenses = expenses;
             ViewBag.Products = products;
-            //if (ajaxCheck == "1") return PartialView("~/Views/Home/Transactions.cshtml");            
+            foreach (var b in products)
+            {
+                quantity = quantity + b.Quantity;
+            }
+            ViewBag.quantity = quantity;                      
             return View(transactions.ToList());
         }       
         [HttpGet]
@@ -73,10 +81,43 @@ namespace StorageManagement.Controllers
 
         public ActionResult Transactions(Transaction transaction)
         {
-            ViewBag.LogText = "1";
+            ViewBag.Status = "Online";
+            Random rand = new Random();
+            var randOp = rand.Next(0, 1);
+            Random rand2 = new Random();
+            double randQ = rand2.Next(1, 15);
+            if (randOp < 0.85)
+            {
+                transaction.Operation = "Продажа";
+                transaction.Quantity = Convert.ToInt32(Math.Round(randQ));
+            } else if (randOp < 0.95)
+            {
+                ViewBag.Status = "Offline";
+                transaction.Operation = "Списание";
+                randQ = rand2.Next(5, 14);
+            } else
+            {
+                ViewBag.Status = "Offline";
+                transaction.Operation = "Списание";
+                randQ = rand2.Next(1, 10);
+            }
             // получаем из бд все объекты Product
             IEnumerable<Product> products = db.Products;
+            IEnumerable<Expense> expenses = db.Expenses;
+            Expense expense = new Expense();
+            expense.Date = DateTime.Now;
+            
             ViewBag.Products = products;
+            foreach (var b in products)
+            {
+                quantity = quantity + b.Quantity;
+            }
+            expense.Cost = quantity * 0.05;
+            db.Expenses.Add(expense);            
+            // сохраняем в бд все изменения
+            db.SaveChanges();
+            ViewBag.Expenses = expenses;
+            ViewBag.quantity = quantity;            
             Product product = new Product();
             var productId = transaction.ProductId;
             if (productId == null)
@@ -130,6 +171,7 @@ namespace StorageManagement.Controllers
                 db.SaveChanges();
             } else
             {
+                ViewBag.Msg = product.Name + " " + product.Quantity + product.Unit; 
                 transaction.Cost = product.Price * 0.5 * transaction.Quantity;
                 product.Quantity = product.Quantity - transaction.Quantity;
                 db.Entry(product).State = EntityState.Modified;
